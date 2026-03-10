@@ -86,4 +86,103 @@ export default function UserDashboard() {
                   </button>
                 )
               })}
-           
+            </div>
+
+            {/* Reading List */}
+            {activeTab === 'reading' && (
+              <div className="space-y-3">
+                {readingList.map((item) => (
+                  <div key={item.id} className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="font-semibold text-white">{item.title}</h3>
+                        <p className="text-sm text-gray-400">Chapter {item.chapter}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-purple-600 rounded-full"
+                            style={{ width: `${item.progress}%` }}
+                          />
+                        </div>
+                        <span className="text-sm text-gray-400">{item.progress}%</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Bookmarks */}
+            {activeTab === 'bookmarks' && (
+              <div className="space-y-3">
+                {bookmarks.map((item) => (
+                  <div key={item.id} className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="font-semibold text-white">{item.title}</h3>
+                        <p className="text-sm text-gray-400">Chapter {item.chapter}</p>
+                      </div>
+                      <span className="text-xs text-gray-500">{item.date}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* History - placeholder */}
+            {activeTab === 'history' && (
+              <div className="text-center py-12 bg-gray-800/30 rounded-lg border border-gray-700">
+                <History size={48} className="mx-auto text-gray-600 mb-4" />
+                <p className="text-gray-400">No reading history yet</p>
+              </div>
+            )}
+
+            {/* Rated - placeholder */}
+            {activeTab === 'rated' && (
+              <div className="text-center py-12 bg-gray-800/30 rounded-lg border border-gray-700">
+                <Star size={48} className="mx-auto text-gray-600 mb-4" />
+                <p className="text-gray-400">No rated items yet</p>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="col-span-4 lg:col-span-1">
+            <div className="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center">
+                  <User size={24} className="text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-white">Guest User</h3>
+                  <p className="text-sm text-gray-400">Member since 2026</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Reading Streak</span>
+                  <span className="text-white font-semibold">7 days</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Total Read</span>
+                  <span className="text-white font-semibold">156 chapters</span>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-400">Hours Spent</span>
+                  <span className="text-white font-semibold">42h</span>
+                </div>
+              </div>
+
+              <button className="w-full mt-6 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition flex items-center justify-center gap-2">
+                <Settings size={16} />
+                <span>Settings</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
