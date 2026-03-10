@@ -10,3 +10,17 @@ export async function getConnection() {
     database: 'sagarad_db'
   })
 }
+
+// Add this for compatibility with the API route
+export const db = {
+  // Add any database methods you need here
+  query: async (sql: string, params?: any[]) => {
+    const connection = await getConnection()
+    try {
+      const [results] = await connection.execute(sql, params)
+      return results
+    } finally {
+      await connection.end()
+    }
+  }
+}
